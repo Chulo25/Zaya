@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Zaya SkinCare">
+<title>Zaya SkinCare – Producción</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F9F4EE;
+    --warm-white: #FDF9F5;
+    --blush: #E8C4A8;
+    --rose: #C4826A;
+    --deep-rose: #8B4F3A;
+    --bark: #5C3D2E;
+    --sage: #8A9E8C;
+    --sage-light: #C8D5C9;
+    --text: #2E1F17;
+    --text-mid: #6B4E3D;
+    --text-light: #A08070;
+    --gold: #C9A96E;
+    --gold-light: #E8D5B0;
+    --shadow: rgba(92,61,46,0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--bark);
+    color: var(--cream);
+    padding: 48px 24px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 60% 0%, rgba(201,169,110,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: var(--cream);
+    line-height: 1.1;
+  }
+  .header-title em { font-style: italic; color: var(--blush); }
+  .header-sub {
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-top: 8px;
+  }
+
+  /* ── NAV BAR ── */
+  .nav-bar {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    background: var(--warm-white);
+    border-bottom: 1px solid var(--gold-light);
+  }
+  .nav-btn {
+    flex: 1;
+    padding: 14px 8px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .nav-btn.active {
+    color: var(--rose);
+    border-bottom-color: var(--rose);
+  }
+
+  /* ── SCREENS ── */
+  .screen { display: none; padding: 24px 20px 40px; animation: fadeUp 0.35s ease; }
+  .screen.active { display: block; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--bark);
+    margin-bottom: 4px;
+  }
+  .section-title em { font-style: italic; }
+  .section-desc {
+    font-size: 12px;
+    color: var(--text-light);
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+  }
+
+  /* ── PRODUCT CARDS ── */
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .product-card {
+    background: var(--warm-white);
+    border: 1.5px solid var(--gold-light);
+    border-radius: 14px;
+    padding: 16px 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 60%, rgba(201,169,110,0.08));
+    pointer-events: none;
+  }
+  .product-card:active { transform: scale(0.97); }
+  .product-card.selected {
+    border-color: var(--rose);
+    background: #FDF0EB;
+    box-shadow: 0 0 0 3px rgba(196,130,106,0.15);
+  }
+  .product-card-icon { font-size: 26px; margin-bottom: 8px; }
+  .product-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--bark);
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+  .product-card-unit {
+    font-size: 10px;
+    color: var(--text-light);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .product-card-check {
+    position: absolute;
+    top: 10px; right: 10px;
+    width: 18px; height: 18px;
+    background: var(--rose);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white;
+    font-size: 11px;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .product-card.selected .product-card-check { opacity: 1; }
+
+  /* ── QUANTITY INPUT ── */
+  .qty-section {
+    background: var(--warm-white);
+    border: 1.5px solid var(--gold-light);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .qty-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 12px;
+  }
+  .qty-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .qty-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gold);
+    background: none;
+    font-size: 20px;
+    color: var(--rose);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .qty-btn:active { background: var(--gold-light); }
+  .qty-input {
+    flex: 1;
+    background: none;
+    border: none;
+    border-bottom: 2px solid var(--gold);
+    padding: 6px 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--bark);
+    text-align: center;
+    outline: none;
+    width: 100%;
+    -webkit-appearance: none;
+  }
+  .qty-unit {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    color: var(--text-light);
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+
+  /* ── PRIMARY BUTTON ── */
+  .btn-primary {
+    width: 100%;
+    padding: 16px;
+    background: var(--bark);
+    color: var(--cream);
+    border: none;
+    border-radius: 50px;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.08));
+  }
+  .btn-primary:active { background: var(--deep-rose); transform: scale(0.98); }
+  .btn-primary:disabled { background: var(--text-light); cursor: not-allowed; }
+
+  .btn-secondary {
+    width: 100%;
+    padding: 14px;
+    background: none;
+    color: var(--rose);
+    border: 1.5px solid var(--rose);
+    border-radius: 50px;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 10px;
+  }
+  .btn-secondary:active { background: #FDF0EB; }
+
+  /* ── STEPS SCREEN ── */
+  .production-header {
+    background: linear-gradient(135deg, var(--bark), var(--deep-rose));
+    border-radius: 16px;
+    padding: 20px;
+    color: var(--cream);
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .production-header::before {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .prod-header-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+  .prod-header-qty {
+    font-size: 13px;
+    color: var(--blush);
+    letter-spacing: 1px;
+  }
+  .prod-header-qty span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--gold);
+    margin-right: 4px;
+  }
+
+  /* progress */
+  .progress-bar-wrap {
+    background: rgba(255,255,255,0.15);
+    border-radius: 8px;
+    height: 4px;
+    margin-top: 14px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--gold);
+    border-radius: 8px;
+    transition: width 0.4s ease;
+  }
+  .progress-label {
+    font-size: 10px;
+    color: rgba(249,244,238,0.6);
+    letter-spacing: 1px;
+    text-align: right;
+    margin-top: 5px;
+  }
+
+  /* step card */
+  .step-card {
+    background: var(--warm-white);
+    border: 1.5px solid var(--gold-light);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 14px;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .step-card.done {
+    border-color: var(--sage-light);
+    background: #F6FAF6;
+    opacity: 0.65;
+  }
+  .step-card.active-step {
+    border-color: var(--rose);
+    box-shadow: 0 4px 24px rgba(196,130,106,0.18);
+  }
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .step-number {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--gold-light);
+    border: 1.5px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--bark);
+    flex-shrink: 0;
+    transition: all 0.3s;
+  }
+  .step-card.done .step-number {
+    background: var(--sage);
+    border-color: var(--sage);
+    color: white;
+  }
+  .step-card.active-step .step-number {
+    background: var(--rose);
+    border-color: var(--rose);
+    color: white;
+  }
+  .step-title-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bark);
+    line-height: 1.2;
+  }
+  .step-instruction {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-mid);
+    line-height: 1.65;
+    margin-bottom: 12px;
+  }
+
+  /* ingredients in step */
+  .step-ingredients { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+  .ingredient-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 10px 14px;
+    border-left: 3px solid var(--gold);
+  }
+  .ingredient-qty {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--rose);
+    min-width: 72px;
+    line-height: 1;
+  }
+  .ingredient-unit {
+    font-size: 10px;
+    color: var(--text-light);
+    letter-spacing: 1px;
+  }
+  .ingredient-name {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--bark);
+    flex: 1;
+  }
+
+  /* tip box */
+  .step-tip {
+    background: linear-gradient(135deg, #FEF9F0, #FAF2E5);
+    border: 1px solid var(--gold-light);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  .step-tip::before { content: '💡 '; }
+
+  /* check button */
+  .step-check-btn {
+    width: 100%;
+    padding: 12px;
+    background: none;
+    border: 1.5px solid var(--sage);
+    border-radius: 50px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--sage);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .step-check-btn:active { background: #EEF4EF; }
+  .step-card.done .step-check-btn {
+    background: var(--sage-light);
+    border-color: var(--sage-light);
+    color: var(--sage);
+  }
+
+  /* done banner */
+  .done-banner {
+    background: linear-gradient(135deg, var(--sage), #6B8F6E);
+    border-radius: 16px;
+    padding: 24px;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+    display: none;
+  }
+  .done-banner.show { display: block; animation: fadeUp 0.4s ease; }
+  .done-banner-icon { font-size: 36px; margin-bottom: 8px; }
+  .done-banner-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 300;
+    margin-bottom: 6px;
+  }
+  .done-banner-sub { font-size: 13px; opacity: 0.85; }
+
+  /* ── FORMULAS SCREEN ── */
+  .formula-card {
+    background: var(--warm-white);
+    border: 1.5px solid var(--gold-light);
+    border-radius: 14px;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .formula-card-header {
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  .formula-card-info { display: flex; align-items: center; gap: 12px; }
+  .formula-card-icon { font-size: 22px; }
+  .formula-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--bark);
+  }
+  .formula-card-count { font-size: 11px; color: var(--text-light); letter-spacing: 1px; }
+  .formula-expand { font-size: 18px; color: var(--gold); transition: transform 0.2s; }
+  .formula-card.open .formula-expand { transform: rotate(90deg); }
+  .formula-body {
+    display: none;
+    padding: 0 18px 18px;
+    border-top: 1px solid var(--gold-light);
+  }
+  .formula-card.open .formula-body { display: block; }
+  .formula-ing-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--gold-light);
+    font-size: 13px;
+    color: var(--text-mid);
+  }
+  .formula-ing-row:last-child { border-bottom: none; }
+  .formula-ing-pct {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--rose);
+  }
+
+  /* ── FLOATING LABEL ── */
+  .float-label {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bark);
+    color: var(--cream);
+    font-size: 11px;
+    letter-spacing: 2px;
+    padding: 10px 20px;
+    border-radius: 50px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .float-label.show { opacity: 1; }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--gold-light); border-radius: 8px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-logo">✦ Producción ✦</div>
+  <div class="header-title">Zaya <em>SkinCare</em></div>
+  <div class="header-sub">Guía de elaboración artesanal</div>
+</div>
+
+<div class="nav-bar">
+  <button class="nav-btn active" onclick="showScreen('producir')">Producir</button>
+  <button class="nav-btn" onclick="showScreen('formulas')">Fórmulas</button>
+</div>
+
+<!-- ════════════════ SCREEN: PRODUCIR ════════════════ -->
+<div class="screen active" id="screen-producir">
+
+  <!-- STEP 1: elegir producto -->
+  <div id="step1">
+    <div class="section-title"><em>¿Qué</em> vas a elaborar?</div>
+    <div class="section-desc">SELECCIONÁ EL PRODUCTO</div>
+    <div class="product-grid" id="productGrid"></div>
+    <button class="btn-primary" id="btnContinue" disabled onclick="goToStep2()">Continuar →</button>
+  </div>
+
+  <!-- STEP 2: cantidad -->
+  <div id="step2" style="display:none">
+    <div class="section-title"><em>¿Cuánto</em> vas a preparar?</div>
+    <div class="section-desc" id="step2Desc">INGRESÁ LA CANTIDAD</div>
+    <div class="qty-section">
+      <div class="qty-label">Cantidad a producir</div>
+      <div class="qty-row">
+        <button class="qty-btn" onclick="adjustQty(-50)">−</button>
+        <input class="qty-input" type="number" id="qtyInput" value="100" min="1" max="10000" inputmode="decimal">
+        <span class="qty-unit" id="qtyUnit">g</span>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="startProduction()">Iniciar producción →</button>
+    <button class="btn-secondary" onclick="goBackToStep1()">← Cambiar producto</button>
+  </div>
+
+  <!-- STEP 3: pasos -->
+  <div id="step3" style="display:none">
+    <div class="production-header">
+      <div class="prod-header-name" id="prodName">—</div>
+      <div class="prod-header-qty"><span id="prodQty">0</span><span id="prodUnitLabel">g</span></div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
+      <div class="progress-label" id="progressLabel">0 / 0 pasos</div>
+    </div>
+    <div id="doneBanner" class="done-banner">
+      <div class="done-banner-icon">✨</div>
+      <div class="done-banner-title">¡Listo!</div>
+      <div class="done-banner-sub" id="doneBannerSub">Producto elaborado correctamente</div>
+    </div>
+    <div id="stepsContainer"></div>
+    <button class="btn-secondary" onclick="resetAll()" style="margin-top:8px">← Nueva producción</button>
+  </div>
+
+</div>
+
+<!-- ════════════════ SCREEN: FÓRMULAS ════════════════ -->
+<div class="screen" id="screen-formulas">
+  <div class="section-title"><em>Fórmulas</em></div>
+  <div class="section-desc">REFERENCIA DE INGREDIENTES</div>
+  <div id="formulasList"></div>
+</div>
+
+<div class="float-label" id="floatLabel"></div>
+
+<script>
+// ════════════════════════════════════════════════
+//  BASE DE DATOS DE PRODUCTOS
+//  Formato de porcentaje: gr (o ml) de ingrediente 
+//  por cada 100 gr (o ml) de producto final
+// ════════════════════════════════════════════════
+const PRODUCTS = [
+  {
+    id: 'crema-hidratante',
+    name: 'Crema Hidratante',
+    icon: '🫙',
+    unit: 'g',
+    steps: [
+      {
+        title: 'Fase Oleosa',
+        instruction: 'En un vaso de precipitado, pesá y mezclá todos los ingredientes de la fase oleosa. Llevá a baño maría hasta que todo esté completamente derretido y uniforme.',
+        ingredients: [
+          { name: 'Aceite de jojoba', pct: 10 },
+          { name: 'Aceite de argán', pct: 5 },
+          { name: 'Manteca de karité', pct: 5 },
+          { name: 'Cera emulsificante (Olivem 1000)', pct: 5 },
+        ],
+        tip: 'Mantené la temperatura entre 70–75°C. No dejes que hierva.'
+      },
+      {
+        title: 'Fase Acuosa',
+        instruction: 'En otro recipiente, calentá el agua destilada y el hidrolato también a 70–75°C.',
+        ingredients: [
+          { name: 'Agua destilada', pct: 65 },
+          { name: 'Hidrolato de rosa', pct: 5 },
+        ],
+        tip: 'Ambas fases deben estar a la misma temperatura antes de mezclar.'
+      },
+      {
+        title: 'Emulsión',
+        instruction: 'Agregá la fase acuosa sobre la fase oleosa en hilo fino, batiendo con minipimer o varilla constantemente hasta obtener una emulsión cremosa y homogénea.',
+        ingredients: [],
+        tip: 'Batí en el mismo sentido. Si la crema se corta, podés volver a calentar suavemente y volver a batir.'
+      },
+      {
+        title: 'Fase Fría – Activos',
+        instruction: 'Cuando la crema esté por debajo de los 40°C, incorporá los activos cosméticos uno por uno, mezclando suavemente con espátula.',
+        ingredients: [
+          { name: 'Ácido hialurónico (1% sol.)', pct: 2 },
+          { name: 'Vitamina E (tocoferol)', pct: 1 },
+          { name: 'Pantenol (Pro-vitamina B5)', pct: 2 },
+        ],
+        tip: 'Los activos se agregan siempre en frío para no destruir sus propiedades.'
+      },
+      {
+        title: 'Conservante y pH',
+        instruction: 'Agregá el conservante y ajustá el pH con NaOH o ácido cítrico. El pH objetivo de la crema es entre 5.5 y 6.5.',
+        ingredients: [
+          { name: 'Conservante (Leucidal o Geogard)', pct: 1 },
+        ],
+        tip: 'Medí el pH con tiras o peachímetro. Un pH correcto garantiza la estabilidad y seguridad del producto.'
+      },
+    ]
+  },
+  {
+    id: 'serum-vitamina-c',
+    name: 'Sérum Vitamina C',
+    icon: '🧴',
+    unit: 'ml',
+    steps: [
+      {
+        title: 'Base Acuosa',
+        instruction: 'En un vaso limpio y esterilizado, medí el agua destilada y el hidrolato. Mezclá suavemente.',
+        ingredients: [
+          { name: 'Agua destilada', pct: 74 },
+          { name: 'Hidrolato de manzanilla', pct: 5 },
+        ],
+        tip: 'Trabajá en frío. No es necesario calentar este sérum.'
+      },
+      {
+        title: 'Agente gelificante',
+        instruction: 'Espolvoreá la carbomer sobre el agua muy lentamente mientras agitás con varilla para evitar grumos. Dejá hidratar 10 minutos.',
+        ingredients: [
+          { name: 'Carbomer 980', pct: 0.5 },
+        ],
+        tip: 'La carbomer necesita tiempo para hidratarse bien. No te apures en este paso.'
+      },
+      {
+        title: 'Neutralización',
+        instruction: 'Neutralizá la carbomer agregando trietanolamina (TEA) gota a gota hasta que el gel se forme. El pH debe quedar entre 5.5 y 6.',
+        ingredients: [
+          { name: 'Trietanolamina (TEA)', pct: 0.5 },
+        ],
+        tip: 'Agregá el TEA muy lento, gota a gota. Verás cómo el gel se forma instantáneamente.'
+      },
+      {
+        title: 'Vitamina C y activos',
+        instruction: 'Incorporá la Vitamina C (ácido ascórbico) en el gel, mezclando bien hasta disolución completa. Luego agregá el niacinamida y el pantenol.',
+        ingredients: [
+          { name: 'Vitamina C (Ácido ascórbico)', pct: 10 },
+          { name: 'Niacinamida (Vitamina B3)', pct: 5 },
+          { name: 'Pantenol', pct: 2 },
+        ],
+        tip: 'La Vitamina C se oxida con la luz. Usá envases oscuros o opacos para el producto terminado.'
+      },
+      {
+        title: 'Conservante y ajuste final',
+        instruction: 'Agregá el conservante, verificá el pH (objetivo: 3–3.5 para máxima estabilidad de la Vitamina C) y ajustá si fuera necesario.',
+        ingredients: [
+          { name: 'Conservante (Geogard Ultra)', pct: 1 },
+        ],
+        tip: 'Un pH bajo (3–3.5) es clave para que la Vitamina C sea activa y estable. Si el pH es muy alto, pierde efectividad.'
+      },
+    ]
+  },
+  {
+    id: 'jabon-artesanal',
+    name: 'Jabón Artesanal',
+    icon: '🧼',
+    unit: 'g',
+    steps: [
+      {
+        title: 'Preparar lejía (NaOH)',
+        instruction: '⚠️ SEGURIDAD: Usá guantes, antiparra y trabajá en lugar ventilado. Agregá el hidróxido de sodio SOBRE el agua fría (nunca al revés). La mezcla se calentará sola. Dejá enfriar a 40–45°C.',
+        ingredients: [
+          { name: 'Agua destilada fría', pct: 33 },
+          { name: 'Hidróxido de sodio (NaOH)', pct: 14 },
+        ],
+        tip: 'Nunca eches agua sobre el NaOH. Siempre NaOH sobre el agua. La lejía puede llegar a 90°C al mezclarse.'
+      },
+      {
+        title: 'Preparar aceites',
+        instruction: 'Pesá y mezclá los aceites. Si la manteca de coco está sólida, calentá suavemente hasta fundir. Llevá los aceites también a unos 40–45°C.',
+        ingredients: [
+          { name: 'Aceite de oliva virgen', pct: 30 },
+          { name: 'Aceite de coco', pct: 20 },
+        ],
+        tip: 'Ambas mezclas (lejía y aceites) deben estar a una temperatura similar para lograr una buena saponificación.'
+      },
+      {
+        title: 'Saponificación',
+        instruction: 'Agregá la lejía sobre los aceites en hilo fino, batiendo con minipimer en modo pulso hasta alcanzar el "traza" (consistencia de crema espesa o natillas).',
+        ingredients: [],
+        tip: 'La traza es el punto en que la mezcla deja rastro al dejar caer una gotita sobre la superficie. Puede tardar entre 5 y 20 minutos.'
+      },
+      {
+        title: 'Fragancia y aditivos',
+        instruction: 'Una vez en traza, agregá la fragancia y los aditivos rápidamente, mezclando con espátula.',
+        ingredients: [
+          { name: 'Fragancia o aceite esencial', pct: 3 },
+        ],
+        tip: 'Algunos aceites esenciales (como clavo o canela) aceleran la traza. Trabajá rápido.'
+      },
+      {
+        title: 'Molde y curado',
+        instruction: 'Volcá la mezcla en el molde. Cubrí con un papel y envolvé con una manta o toalla para mantener el calor (proceso gel). Dejá 24–48 hs sin tocar. Luego desmoldá y dejá curar 4–6 semanas.',
+        ingredients: [],
+        tip: 'El curado es fundamental: el jabón recién hecho aún tiene NaOH activo. Después de 4–6 semanas el pH baja y queda suave para la piel.'
+      },
+    ]
+  },
+  {
+    id: 'tónico-facial',
+    name: 'Tónico Facial',
+    icon: '💧',
+    unit: 'ml',
+    steps: [
+      {
+        title: 'Base acuosa',
+        instruction: 'En un vaso esterilizado, mezclá el agua destilada con el hidrolato.',
+        ingredients: [
+          { name: 'Agua destilada', pct: 75 },
+          { name: 'Hidrolato de hamamelis', pct: 10 },
+        ],
+        tip: 'Usá siempre agua destilada o desmineralizada para evitar contaminación y alargar la vida útil.'
+      },
+      {
+        title: 'Activos humectantes',
+        instruction: 'Agregá los activos uno a uno, mezclando bien después de cada incorporación.',
+        ingredients: [
+          { name: 'Glicerina vegetal', pct: 5 },
+          { name: 'Ácido hialurónico (1% sol.)', pct: 3 },
+          { name: 'Alantoína', pct: 0.5 },
+        ],
+        tip: 'La alantoína se disuelve mejor en agua tibia. Si no se disuelve, calentá levemente.'
+      },
+      {
+        title: 'Niacinamida',
+        instruction: 'Incorporá la niacinamida y mezclá hasta disolución completa.',
+        ingredients: [
+          { name: 'Niacinamida', pct: 3 },
+        ],
+        tip: 'La niacinamida a concentraciones mayores al 10% puede causar enrojecimiento. Para uso diario, 3–5% es ideal.'
+      },
+      {
+        title: 'Conservante y ajuste final',
+        instruction: 'Agregá el conservante. Medí el pH y ajustá si es necesario. El objetivo es un pH entre 5 y 6.',
+        ingredients: [
+          { name: 'Conservante (Phytexel o Geogard)', pct: 1 },
+        ],
+        tip: 'Envasá en botella oscura con spray o pipeta. Etiquetar con fecha de elaboración y vencimiento (6–12 meses).'
+      },
+    ]
+  },
+  {
+    id: 'mascarilla-arcilla',
+    name: 'Mascarilla Arcilla',
+    icon: '🌿',
+    unit: 'g',
+    steps: [
+      {
+        title: 'Fase en polvo',
+        instruction: 'En un bowl, mezclá las arcillas en seco hasta obtener una mezcla homogénea.',
+        ingredients: [
+          { name: 'Arcilla blanca (caolín)', pct: 25 },
+          { name: 'Arcilla verde', pct: 10 },
+        ],
+        tip: 'Las arcillas nunca deben entrar en contacto con utensilios metálicos, ya que pueden dañar sus propiedades. Usá cucharas de madera o plástico.'
+      },
+      {
+        title: 'Fase acuosa',
+        instruction: 'Agregá el hidrolato sobre la arcilla en forma de hilo, mezclando continuamente con espátula de madera hasta obtener una pasta homogénea.',
+        ingredients: [
+          { name: 'Hidrolato de lavanda', pct: 40 },
+          { name: 'Agua destilada', pct: 15 },
+        ],
+        tip: 'La consistencia ideal es como una pasta espesa. Agregá el hidrolato de a poco para controlar la textura.'
+      },
+      {
+        title: 'Aceites y activos',
+        instruction: 'Incorporá los aceites y activos a la pasta, integrando bien.',
+        ingredients: [
+          { name: 'Aceite de argán', pct: 3 },
+          { name: 'Glicerina vegetal', pct: 3 },
+          { name: 'Vitamina E', pct: 1 },
+        ],
+        tip: 'Para pieles grasas, reducí el aceite de argán a 1% y reemplazá el resto con aloe vera.'
+      },
+      {
+        title: 'Conservante',
+        instruction: 'Agregá el conservante y mezclá bien. Ajustá textura si fuera necesario.',
+        ingredients: [
+          { name: 'Conservante (Leucidal)', pct: 1 },
+        ],
+        tip: 'Envasá en tarro de vidrio o aluminio. Vida útil: 3–6 meses. Si el producto lleva agua, el conservante es obligatorio.'
+      },
+    ]
+  },
+  {
+    id: 'aceite-corporal',
+    name: 'Aceite Corporal',
+    icon: '✨',
+    unit: 'ml',
+    steps: [
+      {
+        title: 'Aceites base',
+        instruction: 'Pesá y mezclá todos los aceites base en un vaso de precipitado o bowl.',
+        ingredients: [
+          { name: 'Aceite de almendras dulces', pct: 50 },
+          { name: 'Aceite de jojoba', pct: 20 },
+          { name: 'Aceite de rosa mosqueta', pct: 10 },
+        ],
+        tip: 'Podés variar las proporciones según el tipo de piel. Rosa mosqueta es ideal para cicatrices y estrías.'
+      },
+      {
+        title: 'Aceites secos y activos',
+        instruction: 'Incorporá el escualano y la vitamina E, mezclando bien.',
+        ingredients: [
+          { name: 'Escualano', pct: 10 },
+          { name: 'Vitamina E (tocoferol)', pct: 1 },
+        ],
+        tip: 'El escualano es un aceite "seco" que no deja sensación grasa. Ideal para pieles que no toleran aceites pesados.'
+      },
+      {
+        title: 'Fragancia',
+        instruction: 'Agregá los aceites esenciales y mezclá.',
+        ingredients: [
+          { name: 'Aceite esencial de lavanda', pct: 1.5 },
+          { name: 'Aceite esencial de ylang-ylang', pct: 0.5 },
+        ],
+        tip: 'La concentración total de aceites esenciales en cuerpo no debe superar el 3%. En cara, no más del 1%.'
+      },
+      {
+        title: 'Antioxidante y envasado',
+        instruction: 'Verificá que la vitamina E esté bien integrada (ya fue agregada antes). Envasá en botella oscura con dosificador. Sellá y etiquetá.',
+        ingredients: [],
+        tip: 'Los aceites se oxidan con la luz. Siempre envasá en vidrio oscuro o aluminio. Vida útil: 12 meses sin abrir.'
+      },
+    ]
+  },
+  {
+    id: 'shampoo-solido-nardo',
+    name: 'Shampoo Sólido Nardo',
+    icon: '🌸',
+    unit: 'g',
+    steps: [
+      {
+        title: 'Seguridad y equipamiento',
+        instruction: 'Antes de comenzar: (1) Usá barbijo y protección ocular al manejar el SCI. (2) Preparar: molde de silicona, cuchara o espátula y bowl o Thermomix.',
+        ingredients: [],
+        tip: '⚠️ El SCI (Sodium Cocoyl Isethionate) es un polvo fino que puede irritar las vías respiratorias. El barbijo es obligatorio.'
+      },
+      {
+        title: 'Base líquida – Cocamidopropil Betaína + Jojoba',
+        instruction: 'Colocá en el vaso la Cocamidopropil Betaína. Luego agregá el Aceite de Jojoba.',
+        ingredients: [
+          { name: 'Cocamidopropyl Betaine', pct: 10 },
+          { name: 'Aceite de Jojoba', pct: 3 },
+        ],
+        tip: 'Estos dos ingredientes forman la base líquida que luego ayuda a incorporar el SCI en polvo de manera más uniforme.'
+      },
+      {
+        title: 'Agregar BTMS-25 y calentar',
+        instruction: 'Agregá el BTMS-25 a la mezcla anterior. Calentá 3 minutos / 70°C / vel 2 (Thermomix) o a baño maría, mezclando continuamente.',
+        ingredients: [
+          { name: 'BTMS 25% (Behentrimonium Methosulfate)', pct: 10 },
+        ],
+        tip: 'El BTMS es un sólido que debe fundirse completamente antes de incorporar el SCI. Verificá que no queden grumos.'
+      },
+      {
+        title: 'Incorporar SCI',
+        instruction: 'Agregá el SCI de a poco, en pequeñas porciones, mezclando entre cada adición. Calentá 2 minutos / 70°C / vel 3.',
+        ingredients: [
+          { name: 'SCI (Sodium Cocoyl Isethionate)', pct: 57 },
+        ],
+        tip: '⚠️ Usá barbijo. Agregá el SCI muy lentamente para evitar que vuele polvo. La mezcla se irá espesando y tornando pastosa.'
+      },
+      {
+        title: 'Agregar almidón y homogeneizar',
+        instruction: 'Incorporá el almidón de maíz o arrowroot. Calentá 1 minuto / 70°C / vel 3. Debe quedar una pasta homogénea. Si quedan grumos, seguí mezclando y calentando a 70°C.',
+        ingredients: [
+          { name: 'Almidón de maíz o Arrowroot', pct: 13 },
+        ],
+        tip: 'El almidón mejora la textura y reduce la sensación de pegajosidad del tensioactivo. La pasta debe ser lisa y uniforme.'
+      },
+      {
+        title: 'Enfriar a 40°C – Activos fase fría',
+        instruction: 'Dejá enfriar la mezcla a 40°C o menos. Luego agregá uno a uno: Pantenol, Centella Asiática, Keratina Vegetal Hidrolizada y Vitamina E (Tocoferol), mezclando suavemente después de cada incorporación.',
+        ingredients: [
+          { name: 'Pantenol (Vitamina B5)', pct: 2 },
+          { name: 'Centella Asiatica', pct: 1 },
+          { name: 'Keratina Vegetal Hidrolizada', pct: 2 },
+          { name: 'Tocopherol (Vitamina E)', pct: 0.5 },
+        ],
+        tip: 'Los activos siempre en frío (≤40°C) para preservar sus propiedades. El calor destruye sus beneficios.'
+      },
+      {
+        title: 'Fragancia, conservante y ajuste de pH',
+        instruction: 'Agregá la esencia aromática de Nardo. Luego incorporá el conservante Euxyl P9010. Por último, ajustá el pH a 5.5 con Ácido Láctico (agregar de a gotas y medir con peachímetro).',
+        ingredients: [
+          { name: 'Esencia aromática de Nardo', pct: 0.5 },
+          { name: 'Euxyl P9010 (conservante)', pct: 1 },
+        ],
+        tip: 'pH objetivo: 5.5. Para medir pH en un sólido, disolvé una pequeña porción en agua destilada y medí esa solución. Agregá ácido láctico de a gotas hasta alcanzar el pH correcto.'
+      },
+      {
+        title: 'Moldear',
+        instruction: 'Volcá la pasta aún tibia en el molde de silicona, presionando bien para eliminar burbujas de aire. Alisá la superficie. Dejá solidificar a temperatura ambiente o en heladera por al menos 2 horas.',
+        ingredients: [],
+        tip: 'El shampoo sólido endurece al enfriarse. Desmoldá cuando esté completamente frío y firme. Dejá airear 24 hs antes del primer uso.'
+      },
+    ]
+  },
+  {
+    id: 'acondicionador-solido-nardo',
+    name: 'Acondicionador Sólido Nardo',
+    icon: '💆',
+    unit: 'g',
+    steps: [
+      {
+        title: 'Seguridad y equipamiento',
+        instruction: 'Antes de comenzar: (1) Usá barbijo y protección ocular. (2) Preparar: molde de silicona, cuchara o espátula y Thermomix o bowl para baño maría.',
+        ingredients: [],
+        tip: 'Limpiá y esterilizá todos los utensilios antes de comenzar. Los productos capilares sólidos requieren mucha higiene en el proceso.'
+      },
+      {
+        title: 'Fundir base sólida',
+        instruction: 'Colocá en el vaso de la Thermomix (o bowl a baño maría) el BTMS-25. Agregá el Alcohol Cetílico y la Manteca de Cacao. Fundí a 75°C / 3 a 4 minutos / vel 2.5, o hasta fundir completamente.',
+        ingredients: [
+          { name: 'BTMS 25% (Behentrimonium Methosulfate)', pct: 66.5 },
+          { name: 'Alcohol Cetílico', pct: 14 },
+          { name: 'Manteca de Cacao', pct: 1 },
+        ],
+        tip: 'Estos tres ingredientes forman la estructura sólida del acondicionador. Deben fundirse completamente antes de agregar los aceites. No superar los 80°C.'
+      },
+      {
+        title: 'Incorporar aceites y enfriar',
+        instruction: 'Agregá el MCT Oil Orgánico y el Aceite de Argán a la mezcla fundida. Mezclá bien para integrar. Dejá enfriar a 45°C sin dejar de mezclar.',
+        ingredients: [
+          { name: 'MCT Oil Orgánico Prensado en Frío', pct: 15 },
+          { name: 'Aceite de Argán Puro', pct: 1.5 },
+        ],
+        tip: 'Los aceites se agregan fuera del calor intenso para que no se dañen. El MCT es muy liviano y ayuda a que el acondicionador no resulte pesado sobre el cabello.'
+      },
+      {
+        title: 'Fase fría – Conservante, fragancia y Vitamina E',
+        instruction: 'Con la mezcla a 45°C o menos, agregá la Vitamina E (Tocoferol), luego el conservante Euxyl P9010 y finalmente la esencia aromática de Nardo. Mezclá suavemente entre cada adición.',
+        ingredients: [
+          { name: 'Tocopherol (Vitamina E)', pct: 0.5 },
+          { name: 'Euxyl P9010 (conservante)', pct: 1 },
+          { name: 'Esencia aromática de Nardo', pct: 0.5 },
+        ],
+        tip: 'La fragancia y el conservante siempre en frío. La Vitamina E actúa también como antioxidante para prolongar la vida útil de los aceites.'
+      },
+      {
+        title: 'Ajuste de pH y control',
+        instruction: 'Tomá una pequeña porción del acondicionador y disolví en agua destilada. Medí el pH. El objetivo es 5.5. Si es mayor, agregá Ácido Láctico de a gotas a la mezcla principal hasta ajustar.',
+        ingredients: [],
+        tip: 'Un pH de 5.5 es el ideal para el cabello: cierra la cutícula capilar, reduce el frizz y aumenta el brillo. Un pH muy alto daña el cabello.'
+      },
+      {
+        title: 'Moldear y solidificar',
+        instruction: 'Volcá la mezcla todavía fluida en el molde de silicona. Presioná para eliminar burbujas. Alisá la superficie. Dejá solidificar a temperatura ambiente por al menos 4 horas, o en heladera por 1–2 horas.',
+        ingredients: [],
+        tip: 'El acondicionador sólido puede desmoldarse cuando esté completamente frío y firme. Guardarlo en lugar fresco y seco. Vida útil: 12 meses.'
+      },
+    ]
+  },
+];
+
+// ════════════════════════════════════════════════
+//  ESTADO
+// ════════════════════════════════════════════════
+let selectedProduct = null;
+let totalQty = 0;
+let completedSteps = new Set();
+
+// ════════════════════════════════════════════════
+//  INICIALIZACIÓN
+// ════════════════════════════════════════════════
+function init() {
+  renderProductGrid();
+  renderFormulas();
+}
+
+function renderProductGrid() {
+  const grid = document.getElementById('productGrid');
+  grid.innerHTML = '';
+  PRODUCTS.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.id = 'card-' + p.id;
+    card.innerHTML = `
+      <div class="product-card-check">✓</div>
+      <div class="product-card-icon">${p.icon}</div>
+      <div class="product-card-name">${p.name}</div>
+      <div class="product-card-unit">en ${p.unit === 'g' ? 'gramos' : 'mililitros'}</div>
+    `;
+    card.onclick = () => selectProduct(p.id);
+    grid.appendChild(card);
+  });
+}
+
+function selectProduct(id) {
+  selectedProduct = PRODUCTS.find(p => p.id === id);
+  document.querySelectorAll('.product-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('card-' + id).classList.add('selected');
+  document.getElementById('btnContinue').disabled = false;
+  showFloat(`${selectedProduct.icon} ${selectedProduct.name} seleccionado`);
+}
+
+function goToStep2() {
+  if (!selectedProduct) return;
+  document.getElementById('step1').style.display = 'none';
+  document.getElementById('step2').style.display = 'block';
+  document.getElementById('step2Desc').textContent = `CANTIDAD EN ${selectedProduct.unit === 'g' ? 'GRAMOS' : 'MILILITROS'}`;
+  document.getElementById('qtyUnit').textContent = selectedProduct.unit;
+  document.getElementById('qtyInput').value = 100;
+}
+
+function goBackToStep1() {
+  document.getElementById('step2').style.display = 'none';
+  document.getElementById('step1').style.display = 'block';
+}
+
+function adjustQty(delta) {
+  const input = document.getElementById('qtyInput');
+  let val = parseFloat(input.value) || 100;
+  val = Math.max(1, val + delta);
+  input.value = val;
+}
+
+function startProduction() {
+  const qty = parseFloat(document.getElementById('qtyInput').value);
+  if (!qty || qty <= 0) { showFloat('Ingresá una cantidad válida'); return; }
+  totalQty = qty;
+  completedSteps = new Set();
+
+  document.getElementById('step2').style.display = 'none';
+  document.getElementById('step3').style.display = 'block';
+  document.getElementById('prodName').textContent = selectedProduct.name;
+  document.getElementById('prodQty').textContent = qty;
+  document.getElementById('prodUnitLabel').textContent = ' ' + selectedProduct.unit;
+
+  renderSteps();
+  updateProgress();
+  document.getElementById('doneBanner').classList.remove('show');
+  window.scrollTo(0, 0);
+}
+
+function renderSteps() {
+  const container = document.getElementById('stepsContainer');
+  container.innerHTML = '';
+  selectedProduct.steps.forEach((step, i) => {
+    const card = document.createElement('div');
+    card.className = 'step-card' + (i === 0 ? ' active-step' : '');
+    card.id = 'step-card-' + i;
+
+    let ingsHtml = '';
+    if (step.ingredients.length > 0) {
+      ingsHtml = '<div class="step-ingredients">';
+      step.ingredients.forEach(ing => {
+        const amt = (totalQty * ing.pct / 100);
+        const amtStr = amt % 1 === 0 ? amt.toFixed(0) : amt.toFixed(2);
+        ingsHtml += `
+          <div class="ingredient-row">
+            <div>
+              <div class="ingredient-qty">${amtStr}<span class="ingredient-unit"> ${selectedProduct.unit}</span></div>
+            </div>
+            <div class="ingredient-name">${ing.name}</div>
+          </div>`;
+      });
+      ingsHtml += '</div>';
+    }
+
+    const tipHtml = step.tip ? `<div class="step-tip">${step.tip}</div>` : '';
+
+    card.innerHTML = `
+      <div class="step-header">
+        <div class="step-number">${i + 1}</div>
+        <div class="step-title-text">${step.title}</div>
+      </div>
+      <div class="step-instruction">${step.instruction}</div>
+      ${ingsHtml}
+      ${tipHtml}
+      <button class="step-check-btn" onclick="toggleStep(${i})">
+        <span id="step-btn-text-${i}">✓ Marcar como listo</span>
+      </button>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function toggleStep(i) {
+  if (completedSteps.has(i)) {
+    completedSteps.delete(i);
+    document.getElementById('step-card-' + i).classList.remove('done');
+    document.getElementById('step-btn-text-' + i).textContent = '✓ Marcar como listo';
+  } else {
+    completedSteps.add(i);
+    document.getElementById('step-card-' + i).classList.remove('active-step');
+    document.getElementById('step-card-' + i).classList.add('done');
+    document.getElementById('step-btn-text-' + i).textContent = '↩ Desmarcar';
+    // activate next
+    const next = i + 1;
+    if (next < selectedProduct.steps.length && !completedSteps.has(next)) {
+      document.getElementById('step-card-' + next).classList.add('active-step');
+      setTimeout(() => {
+        document.getElementById('step-card-' + next).scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 200);
+    }
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const total = selectedProduct.steps.length;
+  const done = completedSteps.size;
+  const pct = total > 0 ? (done / total * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = `${done} / ${total} pasos`;
+
+  if (done === total && total > 0) {
+    document.getElementById('doneBanner').classList.add('show');
+    document.getElementById('doneBannerSub').textContent =
+      `${selectedProduct.name} – ${totalQty} ${selectedProduct.unit} elaborados ✨`;
+    document.getElementById('doneBanner').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+function resetAll() {
+  completedSteps = new Set();
+  selectedProduct = null;
+  totalQty = 0;
+  document.getElementById('step3').style.display = 'none';
+  document.getElementById('step1').style.display = 'block';
+  document.querySelectorAll('.product-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('btnContinue').disabled = true;
+  window.scrollTo(0, 0);
+}
+
+// ════════════════════════════════════════════════
+//  FÓRMULAS
+// ════════════════════════════════════════════════
+function renderFormulas() {
+  const list = document.getElementById('formulasList');
+  list.innerHTML = '';
+  PRODUCTS.forEach(p => {
+    const allIngs = p.steps.flatMap(s => s.ingredients);
+    const ingRows = allIngs.map(ing => `
+      <div class="formula-ing-row">
+        <span>${ing.name}</span>
+        <span class="formula-ing-pct">${ing.pct}%</span>
+      </div>
+    `).join('');
+
+    const card = document.createElement('div');
+    card.className = 'formula-card';
+    card.innerHTML = `
+      <div class="formula-card-header" onclick="toggleFormula(this)">
+        <div class="formula-card-info">
+          <span class="formula-card-icon">${p.icon}</span>
+          <div>
+            <div class="formula-card-name">${p.name}</div>
+            <div class="formula-card-count">${allIngs.length} ingredientes · en ${p.unit === 'g' ? 'gramos' : 'ml'}</div>
+          </div>
+        </div>
+        <span class="formula-expand">›</span>
+      </div>
+      <div class="formula-body">
+        ${ingRows}
+        <div style="margin-top:10px; font-size:11px; color:var(--text-light); letter-spacing:1px;">
+          % = gramos (o ml) por cada 100 ${p.unit} de producto final
+        </div>
+      </div>
+    `;
+    list.appendChild(card);
+  });
+}
+
+function toggleFormula(header) {
+  header.closest('.formula-card').classList.toggle('open');
+}
+
+// ════════════════════════════════════════════════
+//  NAVEGACIÓN
+// ════════════════════════════════════════════════
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ════════════════════════════════════════════════
+//  HELPERS
+// ════════════════════════════════════════════════
+let floatTimer;
+function showFloat(msg) {
+  const el = document.getElementById('floatLabel');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(floatTimer);
+  floatTimer = setTimeout(() => el.classList.remove('show'), 2200);
+}
+
+init();
+</script>
+</body>
+</html>
